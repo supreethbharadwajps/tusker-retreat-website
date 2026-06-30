@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 
 const navLinks = [
@@ -18,11 +19,21 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-heading font-bold text-brand-green">
-            Tusker Retreat
-          </span>
-        </Link>
+       <Link href="/" className="flex items-center">
+ 
+  <div className="relative h-20 w-[280px]">  {/* adjust w-40 to your logo's aspect ratio */}
+    <Image
+      src="/logo.png"
+      alt="Tusker Retreat"
+      fill
+      className="object-contain object-left"
+      priority
+    />
+  </div>
+
+</Link>
+
+        {/* --- rest of the header unchanged --- */}
         <nav className="hidden lg:flex space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -34,6 +45,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+
         <button
           className="lg:hidden p-2 text-brand-green"
           onClick={() => setMobileOpen(!mobileOpen)}
